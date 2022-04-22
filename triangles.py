@@ -12,6 +12,7 @@ BOUNDARYS = WIDTH -1, HEIGHT -1
 NB_POINTS = 500
 SHOW_VERTICES = False
 img_idx = 2
+img = pygame.image.load(f"Functions/gradient{img_idx}.png")
 
 if DISPLAY:
 	screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -53,14 +54,8 @@ def filling_outterline(boundaries, pt_per_line):
 ### https://angrytools.com/gradient/
 points = random_spreading(NB_POINTS, BOUNDARYS)
 points += filling_outterline(BOUNDARYS, NB_POINTS/20)
-img = pygame.image.load(f"Functions/gradient{img_idx}.png")
 Triangle.surface = pygame.transform.scale(img, (WIDTH+1, HEIGHT+1))
 Triangle.boundaries = (WIDTH, HEIGHT)
-
-# A = [WIDTH / 2, 2 * HEIGHT]
-# B = [2 * WIDTH, -HEIGHT // 8]
-# C = [-WIDTH, -HEIGHT // 8 +10]
-# SUPER = Triangle([A, B, C], Super = True)
 
 triangulation = Bowyerwatson(points)
 for triangle in triangulation:
